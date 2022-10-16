@@ -1,6 +1,6 @@
 import time
 
-the_name = 'conversation.english.log'
+the_name = 'upto_20221012/conversation.english.log.fix'
 
 lines = None
 with open(the_name) as f:
@@ -16,11 +16,12 @@ for i in lines:
 
 #msg = lines.split(' : ')
 
-b = msg[0][1]
+b = msg[1000][1]
 
 print(b)
 
-t = time.strptime(b,'%a %d %b %Y %I:%M:%S %p %Z')
+t = time.strptime(b,'%a %d %b %Y %I:%M:%S %p %z')
+#t = time.strptime(b,'%a %d %b %Y %I:%M:%S %p %Z')
 
 print(t)
 
