@@ -14,3 +14,8 @@ xlabel('Response (n)');
 ylabel('Delay Time (sec)');
 title('Time Difference Between Responses');
 shg
+
+figure
+
+hist(dt,10);
+shg
