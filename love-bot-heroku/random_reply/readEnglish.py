@@ -29,7 +29,10 @@ h_name_num     = []
 h_name_str     = []
 h_polarity     = []
 h_subjectivity = []
+ii = 0
+ii_total = 0
 for i in msg:
+  ii += 1
   t     = None
   t_sec = None
 
@@ -57,7 +60,7 @@ for i in msg:
  
   bb = i[1]
 
-  print(bb)
+#  print(bb)
 
   if(do_flag):
     try:
@@ -115,7 +118,8 @@ for i in msg:
       pass 
 
   if(do_flag == False):
-    print(bb)
+    pass
+#    print(bb)
 
   if ( (t != None) & (t_sec != None) & (n_num != None) & (n_polarity != None) & (n_subjectivity != None) ):
     h_time.append(t)
@@ -126,23 +130,44 @@ for i in msg:
     h_subjectivity.append(n_subjectivity)
 
 
-  print('------------')
+##  print('------------')
   if t == None:
+    print('ii = ',end='')
+    print(ii,end='')
+    print(' - ',end='')
     print('fail t');
+    ii_total += 1
   if t_sec == None:
+    print('ii = ',end='')
+    print(ii,end='')
+    print(' - ',end='')
     print('fail t_sec');
+    ii_total += 1
   if n_num == None:
+    print('ii = ',end='')
+    print(ii,end='')
+    print(' - ',end='')
     print('fail n_num')
+    ii_total += 1
   if n_polarity == None:
+    print('ii = ',end='')
+    print(ii,end='')
+    print(' - ',end='')
     print('fail n_polarity')
+    ii_total += 1
   if n_subjectivity == None:
+    print('ii = ',end='')
+    print(ii,end='')
+    print(' - ',end='')
     print('fail n_subjectivity')
+    ii_total += 1
 
 ##print(b)
 
 ##t = time.strptime(b,'%a %d %b %Y %I:%M:%S %p %z')
 #t = time.strptime(b,'%a %d %b %Y %I:%M:%S %p %Z')
-
+print('Total errors = ',end='')
+print(ii_total)
 print(len(h_time))
 print(len(h_time_sec))
 print(len(h_name_str))
