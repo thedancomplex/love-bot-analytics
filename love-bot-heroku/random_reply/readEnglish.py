@@ -39,7 +39,7 @@ for i in msg:
   n_subjectivity = None
 
   n_score = i[2]
-  print(n_score)
+
   try:
     n_score_split = n_score.split(' ')
     n_polarity = float(n_score_split[0])
@@ -52,17 +52,30 @@ for i in msg:
   elif ( n_str == 'Love-Bot'):
     n_num = ENUM_LOVEBOT
 
-  try:
-    t     = time.strptime(i[1],'%a %d %b %Y %I:%M:%S %p %z')
-    t_sec = time.mktime(t)
-  except:
-    pass 
 
-  try:
-    t     = time.strptime(i[1],'%a %b %d %Y %I:%M:%S %p %z')
-    t_sec = time.mktime(t)
-  except:
-    pass
+  do_flag = True
+ 
+  bb = i[1]
+
+  if(do_flag):
+    try:
+      t     = time.strptime(bb,'%a %b %d %Y %I:%M:%S %p %z')
+      t_sec = time.mktime(t)
+      do_flag = False
+    except:
+      pass
+
+ 
+  if(do_flag):
+    try:
+      t     = time.strptime(bb,'%a %d %b %Y %I:%M:%S %p %z')
+      t_sec = time.mktime(t)
+      do_flag = False
+    except:
+      pass 
+
+  if(do_flag == False):
+    print(i[1])
 
   if ( (t != None) & (t_sec != None) & (n_num != None) & (n_polarity != None) & (n_subjectivity != None) ):
     h_time.append(t)
@@ -80,3 +93,10 @@ for i in msg:
 print(h_time[100])
 
 print(time.mktime(h_time[100]))
+
+print(len(h_time))
+print(len(h_time_sec))
+print(len(h_name_str))
+print(len(h_name_num))
+print(len(h_polarity))
+print(len(h_subjectivity))
