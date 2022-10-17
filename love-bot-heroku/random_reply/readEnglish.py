@@ -57,10 +57,13 @@ for i in msg:
  
   bb = i[1]
 
+  print(bb)
+
   if(do_flag):
     try:
-      t     = time.strptime(bb,'%a %b %d %Y %I:%M:%S %p %z')
-      t_sec = time.mktime(t)
+      t       = time.strptime(bb,'%a %b %d %Y %I:%M:%S %p %z')
+      #t       = time.strptime(bb,'%a %b %d %Y %I:%M:%S %p %z')
+      t_sec   = time.mktime(t)
       do_flag = False
     except:
       pass
@@ -68,14 +71,51 @@ for i in msg:
  
   if(do_flag):
     try:
-      t     = time.strptime(bb,'%a %d %b %Y %I:%M:%S %p %z')
-      t_sec = time.mktime(t)
+      t       = time.strptime(bb,'%a %d %b %Y %I:%M:%S %p %z')
+      #t       = time.strptime(bb,'%a %d %b %Y %I:%M:%S %p %z')
+      t_sec   = time.mktime(t)
+      do_flag = False
+    except:
+      pass 
+
+  if(do_flag):
+    try:
+      t       = time.strptime(bb,'%a %d %b %Y %H:%M:%S %z')
+      #t       = time.strptime(bb,'%a %d %b %Y %I:%M:%S %p %z')
+      t_sec   = time.mktime(t)
+      do_flag = False
+    except:
+      pass 
+
+  if(do_flag):
+    try:
+      t       = time.strptime(bb,'%a %b %d %Y %H:%M:%S %z')
+      #t       = time.strptime(bb,'%a %d %b %Y %I:%M:%S %p %z')
+      t_sec   = time.mktime(t)
+      do_flag = False
+    except:
+      pass 
+
+  if(do_flag):
+    try:
+      t       = time.strptime(bb,'%a %d %b %H:%M:%S %z %Y')
+      #t       = time.strptime(bb,'%a %d %b %Y %I:%M:%S %p %z')
+      t_sec   = time.mktime(t)
+      do_flag = False
+    except:
+      pass 
+
+  if(do_flag):
+    try:
+      t       = time.strptime(bb,'%a %b %d %H:%M:%S %z %Y')
+      #t       = time.strptime(bb,'%a %d %b %Y %I:%M:%S %p %z')
+      t_sec   = time.mktime(t)
       do_flag = False
     except:
       pass 
 
   if(do_flag == False):
-    print(i[1])
+    print(bb)
 
   if ( (t != None) & (t_sec != None) & (n_num != None) & (n_polarity != None) & (n_subjectivity != None) ):
     h_time.append(t)
@@ -85,14 +125,23 @@ for i in msg:
     h_polarity.append(n_polarity)
     h_subjectivity.append(n_subjectivity)
 
+
+  print('------------')
+  if t == None:
+    print('fail t');
+  if t_sec == None:
+    print('fail t_sec');
+  if n_num == None:
+    print('fail n_num')
+  if n_polarity == None:
+    print('fail n_polarity')
+  if n_subjectivity == None:
+    print('fail n_subjectivity')
+
 ##print(b)
 
 ##t = time.strptime(b,'%a %d %b %Y %I:%M:%S %p %z')
 #t = time.strptime(b,'%a %d %b %Y %I:%M:%S %p %Z')
-
-print(h_time[100])
-
-print(time.mktime(h_time[100]))
 
 print(len(h_time))
 print(len(h_time_sec))
