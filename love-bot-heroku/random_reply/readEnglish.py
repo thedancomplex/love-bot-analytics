@@ -1,4 +1,7 @@
 import time
+import numpy as np
+import scipy
+import scipy.io as sio
 
 ENUM_HIKARI  = 1
 ENUM_LOVEBOT = 2
@@ -166,6 +169,12 @@ for i in msg:
 
 ##t = time.strptime(b,'%a %d %b %Y %I:%M:%S %p %z')
 #t = time.strptime(b,'%a %d %b %Y %I:%M:%S %p %Z')
+
+sio.savemat('./lovebot20221012Time.mat',mdict={'lovebotTime': h_time_sec})
+sio.savemat('./lovebot20221012Name.mat',mdict={'lovebotName': h_name_num})
+sio.savemat('./lovebot20221012Polarity.mat',mdict={'lovebotPolarity': h_polarity})
+sio.savemat('./lovebot20221012Subjectivity.mat',mdict={'lovebotSubjectivity': h_subjectivity})
+
 print('Total errors = ',end='')
 print(ii_total)
 print(len(h_time))
