@@ -31,7 +31,13 @@ h_time_sec     = []
 h_name_num     = []
 h_name_str     = []
 h_polarity     = []
+h_polarity_lovebot = []
+h_polarity_hikari  = []
+
 h_subjectivity = []
+h_subjectivity_lovebot = []
+h_subjectivity_hikari  = []
+
 ii = 0
 ii_total = 0
 for i in msg:
@@ -42,7 +48,11 @@ for i in msg:
   n_str = i[0]
   n_num = None
   n_polarity = None
+  n_polarity_lovebot = None
+  n_polarity_hikari  = None
   n_subjectivity = None
+  n_subjectivity_lovebot = None
+  n_subjectivity_hikari  = None
 
   n_score = i[2]
 
@@ -131,6 +141,14 @@ for i in msg:
     h_name_num.append(n_num)
     h_polarity.append(n_polarity)
     h_subjectivity.append(n_subjectivity)
+    if (n_num == ENUM_HIKARI):
+      h_polarity_hikari.append(n_polarity)
+      h_subjectivity_hikari.append(n_subjectivity)
+    elif (n_num == ENUM_LOVEBOT):
+      h_polarity_lovebot.append(n_polarity)
+      h_subjectivity_lovebot.append(n_subjectivity)
+
+
 
 
 ##  print('------------')
@@ -170,10 +188,16 @@ for i in msg:
 ##t = time.strptime(b,'%a %d %b %Y %I:%M:%S %p %z')
 #t = time.strptime(b,'%a %d %b %Y %I:%M:%S %p %Z')
 
-sio.savemat('./lovebot20221012Time.mat',mdict={'lovebotTime': h_time_sec})
-sio.savemat('./lovebot20221012Name.mat',mdict={'lovebotName': h_name_num})
-sio.savemat('./lovebot20221012Polarity.mat',mdict={'lovebotPolarity': h_polarity})
-sio.savemat('./lovebot20221012Subjectivity.mat',mdict={'lovebotSubjectivity': h_subjectivity})
+sio.savemat('./lovebot20221012Time.mat',                mdict={'lovebotTime': h_time_sec})
+sio.savemat('./lovebot20221012Name.mat',                mdict={'lovebotName': h_name_num})
+sio.savemat('./lovebot20221012Polarity.mat',            mdict={'lovebotPolarity': h_polarity})
+sio.savemat('./lovebot20221012Subjectivity.mat',        mdict={'lovebotSubjectivity': h_subjectivity})
+
+sio.savemat('./lovebot20221012PolarityLoveBot.mat',     mdict={'lovebotLoveBotPolarity':h_polarity_lovebot})
+sio.savemat('./lovebot20221012PolarityHikari.mat',      mdict={'lovebotHikariPolarity':h_polarity_hikari})
+sio.savemat('./lovebot20221012SubjectivityLoveBot.mat', mdict={'lovebotLoveBotSubjectivity':h_subjectivity_lovebot})
+sio.savemat('./lovebot20221012SubjectivityHikari.mat',  mdict={'lovebotHikariSubjectivity':h_subjectivity_hikari})
+
 
 print('Total errors = ',end='')
 print(ii_total)
