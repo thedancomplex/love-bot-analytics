@@ -18,4 +18,16 @@ shg
 figure
 
 hist(dt,10);
+
+figure
+hist(lovebotPolarity)
+xlabel('Polarity')
+ylabel('Number of Occurances')
+title('Polarity of Conversitions')
+
+figure
+hist(lovebotSubjectivity)
+xlabel('Subjectivity')
+ylabel('Number of Occurances')
+title('Subjectivity of Conversations')
 shg
