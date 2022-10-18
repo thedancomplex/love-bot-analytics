@@ -207,3 +207,18 @@ print(len(h_name_str))
 print(len(h_name_num))
 print(len(h_polarity))
 print(len(h_subjectivity))
+
+
+lstart = 0
+lend   = 50000
+
+lb = h_subjectivity_lovebot[lstart:lend]
+hi = h_subjectivity_hikari[lstart:lend]
+
+cc = np.corrcoef(lb,hi)
+print(cc)
+
+crossc = np.correlate(lb,hi,mode='valid')
+print(crossc)
+
+print(np.max(crossc))
