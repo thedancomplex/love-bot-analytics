@@ -40,6 +40,7 @@ h_subjectivity_hikari  = []
 
 ii = 0
 ii_total = 0
+
 for i in msg:
   ii += 1
   t     = None
@@ -148,9 +149,6 @@ for i in msg:
       h_polarity_lovebot.append(n_polarity)
       h_subjectivity_lovebot.append(n_subjectivity)
 
-
-
-
 ##  print('------------')
   if t == None:
     print('ii = ',end='')
@@ -183,6 +181,27 @@ for i in msg:
     print('fail n_subjectivity')
     ii_total += 1
 
+
+
+h_reply_time_to_lovebot = []
+h_reply_time_to_hikari  = []
+
+dt = np.diff(h_time_sec)
+
+print(len(dt))
+
+ii = 0
+dt_flag = True
+for i in h_name_num:
+  if dt_flag:
+    if (i == ENUM_HIKARI):
+      h_reply_time_to_hikari.append(dt[ii])
+    elif (i == ENUM_LOVEBOT):
+      h_reply_time_to_lovebot.append(dt[ii])
+    ii += 1
+  dt_flag = False
+
+
 ##print(b)
 
 ##t = time.strptime(b,'%a %d %b %Y %I:%M:%S %p %z')
@@ -197,6 +216,12 @@ sio.savemat('./lovebot20221012PolarityLoveBot.mat',     mdict={'lovebotLoveBotPo
 sio.savemat('./lovebot20221012PolarityHikari.mat',      mdict={'lovebotHikariPolarity':h_polarity_hikari})
 sio.savemat('./lovebot20221012SubjectivityLoveBot.mat', mdict={'lovebotLoveBotSubjectivity':h_subjectivity_lovebot})
 sio.savemat('./lovebot20221012SubjectivityHikari.mat',  mdict={'lovebotHikariSubjectivity':h_subjectivity_hikari})
+
+sio.savemat('./lovebot20221012ReplyTimeHikari.mat',  mdict={'lovebotHikariReplyTime':h_reply_time_to_hikari})
+sio.savemat('./lovebot20221012ReplyTimeLoveBot.mat',  mdict={'lovebotLoveBotReplyTime':h_reply_time_to_lovebot})
+sio.savemat('./lovebot20221012Dt.mat',  mdict={'lovebotDt':dt})
+
+
 
 
 print('Total errors = ',end='')

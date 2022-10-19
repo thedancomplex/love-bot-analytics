@@ -8,8 +8,9 @@ load lovebot20221012PolarityLoveBot.mat
 load lovebot20221012PolarityHikari.mat
 load lovebot20221012SubjectivityLoveBot.mat
 load lovebot20221012SubjectivityHikari.mat
-
-
+load lovebot20221012ReplyTimeHikari.mat
+load lovebot20221012ReplyTimeLoveBot.mat
+load lovebot20221012Dt.mat
 dt = diff(lovebotTime);
 
 plot(dt,'.')
@@ -64,10 +65,5 @@ hist(lovebotHikariSubjectivity)
 xlabel('Subjectivity')
 ylabel('Number of Occurances')
 title('Subjectivity of Conversations Sent by Hikari')
-
-
-
-
-
 
 shg
