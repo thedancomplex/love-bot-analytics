@@ -191,7 +191,7 @@ dt = np.diff(h_time_sec)
 print(len(dt))
 
 ii = 0
-dt_flag = True
+dt_flag = False
 for i in h_name_num:
   if dt_flag:
     if (i == ENUM_HIKARI):
@@ -199,7 +199,7 @@ for i in h_name_num:
     elif (i == ENUM_LOVEBOT):
       h_reply_time_to_lovebot.append(dt[ii])
     ii += 1
-  dt_flag = False
+  dt_flag = True
 
 
 ##print(b)
@@ -217,11 +217,22 @@ sio.savemat('./lovebot20221012PolarityHikari.mat',      mdict={'lovebotHikariPol
 sio.savemat('./lovebot20221012SubjectivityLoveBot.mat', mdict={'lovebotLoveBotSubjectivity':h_subjectivity_lovebot})
 sio.savemat('./lovebot20221012SubjectivityHikari.mat',  mdict={'lovebotHikariSubjectivity':h_subjectivity_hikari})
 
-sio.savemat('./lovebot20221012ReplyTimeHikari.mat',  mdict={'lovebotHikariReplyTime':h_reply_time_to_hikari})
-sio.savemat('./lovebot20221012ReplyTimeLoveBot.mat',  mdict={'lovebotLoveBotReplyTime':h_reply_time_to_lovebot})
-sio.savemat('./lovebot20221012Dt.mat',  mdict={'lovebotDt':dt})
+sio.savemat('./lovebot20221012ReplyTimeHikari.mat',     mdict={'lovebotHikariReplyTime':h_reply_time_to_hikari})
+sio.savemat('./lovebot20221012ReplyTimeLoveBot.mat',    mdict={'lovebotLoveBotReplyTime':h_reply_time_to_lovebot})
+sio.savemat('./lovebot20221012Dt.mat',                  mdict={'lovebotDt':dt})
 
 
+sio.savemat('./lovebot20221012.mat',  mdict={'lovebotTime': h_time_sec, 
+                                             'lovebotName': h_name_num, 
+                                             'lovebotPolarity': h_polarity,
+                                             'lovebotSubjectivity': h_subjectivity,
+                                             'lovebotLoveBotPolarity':h_polarity_lovebot,
+                                             'lovebotHikariPolarity':h_polarity_hikari,
+                                             'lovebotLoveBotSubjectivity':h_subjectivity_lovebot,
+                                             'lovebotHikariSubjectivity':h_subjectivity_hikari,
+                                             'lovebotHikariReplyTime':h_reply_time_to_hikari,
+                                             'lovebotLoveBotReplyTime':h_reply_time_to_lovebot,
+                                             'lovebotDt':dt})
 
 
 print('Total errors = ',end='')
