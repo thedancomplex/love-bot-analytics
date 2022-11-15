@@ -84,7 +84,7 @@ title('Delay Time of Messages from Love-Bot to Hikari')
 
 
 figure
-hist(lovebotLoveBotReplyTime,10000000)
+hist(lovebotLoveBotReplyTime,1000000)
 xlabel('Delay Time (ms)')
 ylabel('Number of Occurances')
 title('Delay Time of Messages from Hikari to Love-Bot')
